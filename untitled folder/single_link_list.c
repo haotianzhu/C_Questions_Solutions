@@ -144,8 +144,9 @@ int sll_concat(sl_list *current,sl_list *next,int size, int null_flag){
 		MYERR("flag shoul be 0 or 1\n");
 	}
 
-	sl_list *end = _sll_get(next, size-1, null_flag);
 
+
+	sl_list *end = _sll_get(next, size-1, null_flag);
 
 	if(!end){
 		if(!null_flag){
@@ -154,7 +155,26 @@ int sll_concat(sl_list *current,sl_list *next,int size, int null_flag){
 			return 0;
 		}
 	}
-	_sll_concat(current,next,end);
+
+	sl_list *cp_next = next;
+	int array[size];
+
+	for (int i = 0; i < size; i++){
+		array[i] = cp_next->val;
+		cp_next = cp_next->next;
+	}
+
+	sl_list *begin = sll_init(array, size);
+	end = _sll_get(begin, size-1, null_flag);
+
+	if(!end){
+		if(!null_flag){
+			MYERR("out of index\n");
+		}else{
+			return 0;
+		}
+	}
+	_sll_concat(current,begin,end);
 
 	return 1;
 }

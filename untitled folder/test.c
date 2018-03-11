@@ -33,7 +33,7 @@ int main(int argc, char const *argv[]){
 	sll_retrieve(l1);
 	sll_retrieve(l2);
 
-	sll_concat(l1->next, l2, 2, 0); //>>bug
+	sll_concat(l1->next, l2, 2, 0);
 
 	printf("---\n");
 	sll_retrieve(l1);
