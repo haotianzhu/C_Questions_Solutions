@@ -10,8 +10,6 @@
 
 
 
-extern int errno;
-
 /*-------------------
 struct _Node{
 	int id; // Node id
@@ -19,6 +17,86 @@ struct _Node{
 	_Node *next;
 };
 -------------------*/
+extern int errno;
+static sl_list* _sll_get(sl_list*root,int size,int null_flag);
+static void _sll_concat(sl_list *current,sl_list *add,sl_list *end);
+static int _sll_remove(sl_list *current,sl_list *next);
+static void _sll_add(sl_list *current,sl_list *next);
+
+
+
+/*-------------------
+sl_list *root => head of list
+index => list[index], index from 0 to (size-1)
+null_flag => 0 show error if out of index; 1 retuen NULL instead of error
+-------------------*/
+static
+sl_list* _sll_get(sl_list* root,int index, int null_flag){
+
+	if(index < 0){
+		MYERR("index should be >= 0\n");
+	}
+
+	if(null_flag!=0 && null_flag != 1){
+		MYERR("flag shoul be 0 or 1\n");
+	}
+
+
+	sl_list *current = root;
+
+	int i = 0;
+	for (i = 0; i < index && current; i++){
+		current = current->next;
+	}
+
+	if(!null_flag){
+		if(!current){
+			MYERR("out of index\n");
+		}
+	}
+
+	return current;
+}
+
+
+
+static
+int _sll_remove(sl_list *current,sl_list *next){
+	current->next = next->next;
+	int re = next->val;
+	next = NULL;
+	return re;
+}
+
+
+
+static
+void _sll_concat(sl_list *current,sl_list *add,sl_list *end){
+	sl_list *temp = current->next;
+	current->next = add;
+	end->next = temp;
+}
+
+
+
+static
+void _sll_add(sl_list *current,sl_list *next){
+	sl_list *temp = current->next;
+	current->next = next;
+	next->next = temp;
+}
+
+sl_list* sll_init_empty(){
+
+	sl_list *root = malloc(sizeof(sl_list));
+	if(!root){
+		MYERR("No memory to malloc\n");
+	}
+	root->val = 0;
+	root->next = 0;
+	return root;
+}
+
 
 sl_list* sll_init( int* array, int length){
 
@@ -26,45 +104,30 @@ sl_list* sll_init( int* array, int length){
 		MYERR("length should be >= 1\n");
 	}
 
-	sl_list *list = malloc(sizeof(sl_list)*length);
-	
+	sl_list **list = malloc(sizeof(sl_list *)*length);
+
 	if(!list){
 		MYERR("No memory to malloc\n");
 	}
+	for (int i = 0; i < length; i++){
+		list[i] = malloc(sizeof(sl_list));
+	}
 
-	sl_list *root = list;
+	sl_list *root = &(list[0][0]);
 
 	for (int i = 0; i < length; i++){
-		(list+i)->val = array[i];
+		(*(list+i))->val = array[i];
 		if (i == length-1){
-			(list+i)->next = 0;
+			(*(list+i))->next = 0;
 		}else{
-			(list+i)->next = &(list[i+1]);
+			(*(list+i))->next = (*(list+i+1));
 		}
 	}
+	free(list);
 	return root;
 }
 
 
-/*-------------------
-new = old
--------------------*/
-static
-void _sll_copy(sl_list *new_p,sl_list *old_p,int size){
-	for (int i = 0; i < size; i++){
-		if (!(new_p+i) || !(old_p+i)){
-			MYERR("out of index, cant not assign NULL to not NULL");
-		}
-
-		(new_p+i)->val = (old_p+i)->val;
-		if(i == size-1){
-			(new_p+size -1)->next = (old_p+size -1)->next;
-		}else{
-			(new_p+i)->next = &new_p[i+1];
-		}
-	}
-
-}
 
 /*-------------------
 current->next...size...next->(cuurent->next)...
@@ -81,15 +144,7 @@ int sll_concat(sl_list *current,sl_list *next,int size, int null_flag){
 		MYERR("flag shoul be 0 or 1\n");
 	}
 
-	sl_list *add = malloc(sizeof(sl_list)*size);
-
-	if(!add){
-		MYERR("no memory to malloc\n");
-	}
-
-	_sll_copy(add, next, size);
-
-	sl_list *end = sll_get(	add, size-1, null_flag);
+	sl_list *end = _sll_get(next, size-1, null_flag);
 
 
 	if(!end){
@@ -99,40 +154,22 @@ int sll_concat(sl_list *current,sl_list *next,int size, int null_flag){
 			return 0;
 		}
 	}
-
-	_sll_concat(current, add, end);
-
-	// free(add);
-
+	_sll_concat(current,next,end);
 
 	return 1;
 }
 
 
-static
-void _sll_remove(sl_list *current,sl_list *next){
-	current->next = next->next;
-	next = NULL;
-}
-static
-void _sll_concat(sl_list *current,sl_list *add,sl_list *end){
-	sl_list *temp = current->next;
-	current->next = add;
-	end->next = temp;
+
+
+int sll_pop(sl_list *current){
+	return sll_remove(current,-1);
 }
 
-static
-void _sll_add(sl_list *current,sl_list *next){
-	sl_list *temp = current->next;
-	current->next = next;
-	next->next = temp;
-}
 
-void sll_pop(sl_list *current){
-	sll_remove(current,-1);
-}
 
-void sll_remove(sl_list *current,int index){
+
+int sll_remove(sl_list *current,int index){
 	sl_list *root = current;
 	sl_list *next;
 
@@ -166,13 +203,13 @@ void sll_remove(sl_list *current,int index){
 		int temp_val = root->val;
 		root->val = next->val;
 		next->val = temp_val;
-		_sll_remove(current, next);
+		return _sll_remove(current, next);
 	}else{
-		_sll_remove(current, next);
+		return _sll_remove(current, next);
 	}
-
-	return;
 }
+
+
 
 void sll_append(sl_list *current,int val){
 	sll_add(current,-1,val);
@@ -214,9 +251,6 @@ void sll_add(sl_list *current,int index,int val){
 		_sll_add(current, next);
 	}
 
-	// free(next);
-
-
 	return;
 }
 
@@ -232,11 +266,11 @@ int sll_size(sl_list *root){
 	return count;
 }
 
+
 void sll_retrieve(sl_list *root){
 	sl_list *current = root;
 	printf("[ || -> ");
 	while(current){
-		printf("%p\n",current );
 		printf("%d -> ",current->val);
 		current = current->next;
 	}
@@ -244,40 +278,21 @@ void sll_retrieve(sl_list *root){
 	return;
 }
 
-/*-------------------
-sl_list *root => head of list
-index => list[index], index from 0 to (size-1)
-null_flag => 0 show error if out of index; 1 retuen NULL instead of error
--------------------*/
-sl_list* sll_get(sl_list*root,int index, int null_flag){
-
-	if(index < 0){
-		MYERR("index should be >= 0\n");
-	}
-
-	if(null_flag!=0 && null_flag != 1){
-		MYERR("flag shoul be 0 or 1\n");
-	}
 
 
-	sl_list *current = root;
-
-	int i = 0;
-	for (i = 0; i < index && current; i++){
-		current = current->next;
-	}
-
-	if(!null_flag){
-		if(!current){
-			MYERR("out of index\n");
-		}
-	}
-
-	return current;
+int sll_get(sl_list *root,int index){
+	sl_list *re = _sll_get(root, index, 1);
+	return re->val;
 }
 
+
+
 void sll_free(sl_list *root){
-	free(root);
+	while(!root){
+		sl_list *last = root;
+		root = root->next;
+		free(last);
+	}
 	return;	
 }
 
