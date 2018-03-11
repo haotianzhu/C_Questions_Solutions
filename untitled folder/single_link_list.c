@@ -102,7 +102,7 @@ int sll_concat(sl_list *current,sl_list *next,int size, int null_flag){
 
 	_sll_concat(current, add, end);
 
-	free(add);
+	// free(add);
 
 
 	return 1;
@@ -214,8 +214,9 @@ void sll_add(sl_list *current,int index,int val){
 		_sll_add(current, next);
 	}
 
+	// free(next);
 
-	free(next);
+
 	return;
 }
 
@@ -235,6 +236,7 @@ void sll_retrieve(sl_list *root){
 	sl_list *current = root;
 	printf("[ || -> ");
 	while(current){
+		printf("%p\n",current );
 		printf("%d -> ",current->val);
 		current = current->next;
 	}

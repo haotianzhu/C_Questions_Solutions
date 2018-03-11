@@ -17,12 +17,13 @@ int main(int argc, char const *argv[]){
 	sl_list * root = sll_init(n,4);
 	sll_retrieve(root);
 	sl_list *sc_root = sll_init(m, 4);
+	sll_retrieve(sc_root);
 	int a = sll_concat(root, sc_root, 4,1);
 	sll_retrieve(root);
-	// sll_add(root,1, 9999);
-	// sll_retrieve(root);
-	sll_remove(root,2);
-	sll_retrieve(root);	
+	sll_add(root,-1, 9999);
+	sll_retrieve(root);
+	// sll_remove(root,2);
+	// sll_retrieve(root);	
 	sll_free(root);
 	sll_free(sc_root);
 	return 0;
