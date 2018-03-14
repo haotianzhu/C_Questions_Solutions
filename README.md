@@ -1,10 +1,4 @@
-[CPU status](./1.1) (question from book "Beauty of Programming")
 
-[Elevator problem](./1.8) (question from book "Beauty of Programming")
-
-[Bit operation](./1.8) (question from book "Beauty of Programming")
-
-[median of two sorted arrays ](./median_of_two_sorted_arrays) (question from LeetCode)
 
 
 
