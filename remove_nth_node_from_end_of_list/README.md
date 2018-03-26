@@ -21,7 +21,7 @@ class Solution(object):
 
 		# tracks of lleft -> left -> ..... -> right 
 		# where the distance of left and right is n nodes
-		# when right touch base, which means right is None
+		# when right touches base, which means right is None
 		# we need to remove left
 		# so only thing we need is to connect lleft and left.nxet 
 		left = head
