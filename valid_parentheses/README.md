@@ -23,8 +23,8 @@ class Solution(object):
 		# stack dtype: list, 
 		# for each left_bracket by order, satck contains its corresponding right_bracket
 		stack = [] 
-		left_bracket = ["{","[","("]
-		right_bracket = ["}","]",")"]
+		left_bracket = "{[("
+		right_bracket = "}])"
 		convert_dict = {"{":"}","[":"]","(":")"} # a dict helps to convert left bracket to right bracket
 
 		for e in s:
