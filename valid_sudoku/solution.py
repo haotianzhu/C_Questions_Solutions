@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
 	def isValidSudoku(self, board):
 		"""
 		:type board: List[List[str]]
@@ -49,6 +49,14 @@ class Solution:
 		return 1
 
 
+class Solution2:
+	'''
+		This solution comes from leetcode user girikuncoro and StefanPochmann
+	'''
+	def isValidSudoku(self, board):
+		seen = sum( [ [(c,j),(i,c),(i//3,j//3,c)] for i, row in enumerate(board) for j, c in enumerate(row) if c != '.' ],[])
+		return len(seen) == len(set(seen))
+		
 
 if __name__ == '__main__':
 
@@ -66,8 +74,10 @@ if __name__ == '__main__':
 	board[7] = ". . . 4 1 9 . . 5".split()
 	board[8] = ". . . . 8 . . 7 9".split()
 
-	re = Solution().isValidSudoku(board)
 
+	re = Solution2().isValidSudoku(board)
+	print(re)
+	re = Solution1().isValidSudoku(board)
 	print(re)
 
 
