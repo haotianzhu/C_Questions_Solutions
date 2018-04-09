@@ -40,8 +40,8 @@ class Solution:
 
 ```
 
-comment:
+Comments:
 
-Using binary operation helps running time to be O(n) and space cost to be O(1).
+Using binary operations helps running time to be O(n) and space cost to be O(1).
 
 Pruning  ```num > 0 and num <= length```  extremely imporves running time (we can prune big integer immediately and don't need to expand variable masked).
