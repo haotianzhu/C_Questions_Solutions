@@ -2,7 +2,7 @@
 
 Questions List (sort from newest to oldest):
 
-[first_missing_positive](./tree/master/first_missing_positive)
+[first_missing_positive](./first_missing_positive)
 
 [count_and_say](https://github.com/haotianzhu/Questions_Solutions/tree/master/count_and_say)
 
