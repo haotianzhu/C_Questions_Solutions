@@ -1,8 +1,8 @@
+Question comes from leetcode
 
 
 
-
-solution:
+question:
 
 ![](question.png)
 
@@ -10,7 +10,9 @@ solution:
 
 
 
-question:
+
+
+solution:
 
 ```python
 class Solution:
