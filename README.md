@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[trapping_rain_water](./trapping_rain_water)
+
 [first_missing_positive](./first_missing_positive)
 
 [count_and_say](./count_and_say)
