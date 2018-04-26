@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[permutations](./permutations)
+
 [trapping_rain_water](./trapping_rain_water)
 
 [first_missing_positive](./first_missing_positive)
