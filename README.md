@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[rotate_image](./rotate_image)
+
 [permutations](./permutations)
 
 [trapping_rain_water](./trapping_rain_water)
