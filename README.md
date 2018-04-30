@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[group_anagrams](.group_anagrams)
+
 [rotate_image](./rotate_image)
 
 [permutations](./permutations)
