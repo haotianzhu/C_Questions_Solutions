@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[mypowxy](./mypowxy)
+
 [group_anagrams](./group_anagrams)
 
 [rotate_image](./rotate_image)
