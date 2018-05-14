@@ -1,6 +1,6 @@
 question:
 
-![image-20180513195756355](/Users/haotianzhu/Documents/Questions_Solutions/jump_game/question.png)
+![image-20180513195756355](./question.png)
 
 
 
