@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[merge_intervals](./merge_intervals)
+
 [jump_game](./jump_game)
 
 [spiral_matrix](./spiral_matrix)
