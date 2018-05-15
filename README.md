@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[unique_path](./unique_path)
+
 [merge_intervals](./merge_intervals)
 
 [jump_game](./jump_game)
