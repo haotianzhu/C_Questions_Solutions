@@ -1,0 +1,23 @@
+graph  {
+a;
+c;
+b;
+e;
+d;
+f;
+a -- c  [key=0, label=9];
+a -- b  [key=0, label=8];
+a -- e  [key=0, label=6];
+a -- d  [key=0, label=9];
+a -- f  [key=0, label=7];
+c -- b  [key=0, label=9];
+c -- e  [key=0, label=10];
+c -- d  [key=0, label=5];
+c -- f  [key=0, label=3];
+b -- e  [key=0, label=7];
+b -- d  [key=0, label=4];
+b -- f  [key=0, label=5];
+e -- d  [key=0, label=6];
+e -- f  [key=0, label=10];
+d -- f  [key=0, label=8];
+}
