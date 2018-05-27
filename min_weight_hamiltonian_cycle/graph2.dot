@@ -1,0 +1,20 @@
+graph  {
+C;
+CH;
+WEM;
+PB;
+S;
+U;
+SEC;
+C -- S  [key=0, label=3];
+C -- SEC  [key=0, label=10];
+CH -- PB  [key=0, label=5];
+CH -- S  [key=0, label=6];
+WEM -- PB  [key=0, label=10];
+WEM -- S  [key=0, label=12];
+WEM -- SEC  [key=0, label=11];
+PB -- S  [key=0, label=7];
+PB -- U  [key=0, label=4];
+S -- U  [key=0, label=7];
+U -- SEC  [key=0, label=6];
+}
