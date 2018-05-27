@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[min_weight_hamiltonian_cycle](./min_weight_hamiltonian_cycle)
+
 [unique_path](./unique_path)
 
 [merge_intervals](./merge_intervals)
