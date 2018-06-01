@@ -2,6 +2,8 @@
 
 Question List (sort from newest to oldest):
 
+[climbing_stairs](./climbing_stairs)
+
 [min_weight_hamiltonian_cycle](./min_weight_hamiltonian_cycle)
 
 [unique_path](./unique_path)
