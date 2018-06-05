@@ -1,0 +1,23 @@
+graph  {
+C;
+B;
+D;
+M;
+O;
+S;
+C -- S  [key=0, label=210];
+C -- B  [key=0, label=272];
+C -- M  [key=0, label=289];
+C -- D  [key=0, label=348];
+C -- O  [key=0, label=135];
+B -- S  [key=0, label=289];
+B -- M  [key=0, label=270];
+B -- D  [key=0, label=453];
+B -- O  [key=0, label=136];
+D -- M  [key=0, label=212];
+D -- S  [key=0, label=198];
+D -- O  [key=0, label=395];
+M -- S  [key=0, label=61];
+M -- O  [key=0, label=259];
+O -- S  [key=0, label=230];
+}
