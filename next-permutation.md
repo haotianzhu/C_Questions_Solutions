@@ -1,5 +1,6 @@
 
-https://leetcode.com/problems/next-permutation/submissions/
+https://leetcode.com/problems/next-permutation
+
 
 ```
 
